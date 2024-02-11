@@ -70,7 +70,7 @@ video_ram       = "<video_ram>"                         # Exemple : "131072" (=1
 #############################
 
 ssh_comm        = "<communicator>"                      # Default is : "ssh"
-ssh_user        = "<user_name>                          # Default is : "packer"   ## must be same as in the preseed.cfg file
+ssh_user        = "<user_name>"                         # Default is : "packer"   ## must be same as in the preseed.cfg file
 ssh_pwd         = "<user_password>"                     # Default is : "packer"   ## must be same as in the preseed.cfg file
 ssh_root_pwd    = "<root_password>"                     # Default is : "insecure" ## must be same as in the preseed.cfg file
 ssh_time        = "<time_before_ssh_time_out>"          # Default is : "45m"
