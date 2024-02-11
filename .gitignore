@@ -1,0 +1,12 @@
+*.old
+*.new
+*.test
+*.tfstate
+images
+iso
+Gitlab.tfvars
+*_secrets.pkrvar.hcl
+Archive
+output-build_image
+*inventory*
+.terraform

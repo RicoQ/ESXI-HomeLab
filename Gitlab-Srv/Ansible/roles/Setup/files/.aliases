@@ -1,0 +1,67 @@
+## Custom Aliases
+
+# Aptitude
+alias Apt='sudo aptitude'
+alias Upgrade='Apt upgrade -y'
+alias Update='Apt update'
+alias UPGRADE='Update && Upgrade'
+alias Install='Apt install -y'
+alias Search='Apt search'
+alias Purge='Apt purge --auto-remove'
+alias Remove='Apt remove'
+
+# System
+alias Sys='sudo systemctl'
+alias Enable='Sys enable'
+alias Start='Sys start'
+alias Stop='Sys stop'
+alias Reload='Sys daemon-reload'
+alias Restart='Sys restart'
+alias Status='Sys status'
+alias Service='sudo service'
+alias ifconfig='sudo ifconfig'
+alias iptables='sudo iptables'
+alias Source='sudo source'
+alias Shutdown='sudo shutdown -fh now'
+alias Reboot='sudo reboot -f'
+alias Python='sudo python'
+alias Conda='conda activate automatic'
+alias LC='/windir/d/Dev/lama-cleaner/LC.sh'
+
+# Common
+alias cd..='cd ..'
+alias Dir='ls -1aF'
+alias LS='ls -lah'
+alias Less='sudo less'
+alias Find='sudo find / -name'
+alias Grep='sudo grep'
+alias Cat='sudo cat'
+alias Tail='sudo tail -f'
+alias RM='sudo rm'
+alias CP='sudo cp'
+alias MV='sudo mv'
+
+# chmod & chown
+alias chmod='sudo chmod'
+alias Chmod='chmod'
+alias CMX='chmod +x'
+alias chown='sudo chown'
+alias Chown='chown'
+alias COU='chown admin:admin'
+alias COR='chown root:root'
+
+# Utilities
+alias Nano='sudo nano'
+alias Git='sudo git'
+alias python='python3'
+alias Python='sudo python'
+
+# Kubectl
+alias minikube='/usr/bin/minikube'
+alias kubectl='kubectl --kubeconfig ~/.kube/config'
+#alias kubectl='kubectl --kubeconfig ~/.kube/k3s.yml'
+#alias kubectl='kubectl --kubeconfig ~/.kube/k8s-Config.yml'
+alias k='kubectl'
+
+# Custom
+alias SD='bash /windir/d/Dev/Ai_projects/start_sd.sh'

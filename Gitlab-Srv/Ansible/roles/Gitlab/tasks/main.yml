@@ -1,0 +1,100 @@
+---
+    #############################
+    # Init / Prepare SSH
+    #############################
+
+- name: Config sshd
+  blockinfile:
+    path: /etc/ssh/sshd_config
+    block: |
+      Match User git
+      Banner none
+
+- name: Restart ssh
+  service:
+    name: ssh
+    state: restarted
+  become: true
+
+- name: Debug Check SERVICE & VERSION
+  debug:
+    msg: "SERVICE = {{ SERVICE }}  &&  VERSION = {{ VERSION }}"
+
+    #############################
+    # Init / Prepare install
+    #############################
+
+- name: mark grub packages to hold
+  shell:
+    cmd: apt-mark hold grub-common grub-pc grub-pc-bin grub2-common
+  ignore_errors: true
+  become: true
+
+- name: Download deb script to add Gitlab Apt Repo
+  get_url:
+    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+    dest: /tmp
+    mode: 0755
+  become: true
+
+- name: Run Gitlab deb script
+  shell: /tmp/script.deb.sh
+  become: true
+
+- name: Upgrade all packages to the latest version
+  apt:
+    upgrade: "yes"
+    update_cache: true
+    dpkg_options: "force-confold,force-confdef"
+  become: true
+
+- name: Dist-Upgrade
+  apt:
+    upgrade: "dist"
+    dpkg_options: "force-confold,force-confdef"
+  become: true
+
+    #############################
+    # Install GitLab Server
+    #############################
+
+- name: Install GitLab CE package v{{ VERSION }}
+  apt:
+    name:
+    - "gitlab-ce={{ VERSION }}"
+  become: true
+
+- name: Mark package to hold to avoid unwanted upgrade
+  shell:
+    cmd: apt-mark hold gitlab-ce
+  ignore_errors: true
+  become: true
+
+    #############################
+    # Preconfigure GitLab Server
+    #############################
+
+- name: Replace default gitlab config file
+  copy:
+    src: files/gitlab.rb
+    dest: /etc/gitlab/gitlab.rb
+    backup: true
+  become: true
+
+    #############################
+    # Configure SSL
+    #############################
+
+- name: Copy SSL cert files used by embedded nginx
+  copy:
+    src: files/ssl_certs/
+    dest: /etc/ssl/private/
+  become: true
+
+    #############################
+    # Reconfigure Gitlab
+    #############################
+  
+- name: Reconfigure Gitlab
+  shell: "gitlab-ctl reconfigure"
+  become: true

@@ -1,0 +1,11 @@
+---
+- name: Update Image
+  hosts: all
+
+  roles:
+    - role: Setup
+      # when: SERVICE == "Setup"
+    - role: Docker
+      when: SERVICE != "Setup"
+    - role: Gitlab
+      when: SERVICE == "Gitlab"
