@@ -26,7 +26,6 @@ alias Shutdown='sudo shutdown -fh now'
 alias Reboot='sudo reboot -f'
 alias Python='sudo python'
 alias Conda='conda activate automatic'
-alias LC='/windir/d/Dev/lama-cleaner/LC.sh'
 
 # Common
 alias cd..='cd ..'
@@ -59,9 +58,4 @@ alias Python='sudo python'
 # Kubectl
 alias minikube='/usr/bin/minikube'
 alias kubectl='kubectl --kubeconfig ~/.kube/config'
-#alias kubectl='kubectl --kubeconfig ~/.kube/k3s.yml'
-#alias kubectl='kubectl --kubeconfig ~/.kube/k8s-Config.yml'
 alias k='kubectl'
-
-# Custom
-alias SD='bash /windir/d/Dev/Ai_projects/start_sd.sh'
